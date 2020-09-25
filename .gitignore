@@ -1,0 +1,9 @@
+.DS_Store
+run
+*.iml
+*.iws
+*.ipr
+.idea
+.gradle
+build
+*~

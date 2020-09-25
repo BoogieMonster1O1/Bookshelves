@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "io.github.boogiemonster1o1.bookshelves.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BlocksAccessor",
+    "ItemsAccessor"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
