@@ -14,9 +14,10 @@ minecraft {
 }
 
 repositories {
-//    maven {
-//        url = 'https://dl.bintray.com/boogiemonster1o1/cool-mods/'
-//    }
+    maven {
+        name = "Cotton Maven"
+        url = "https://server.bbkr.space/artifactory/libs-release"
+    }
 }
 
 dependencies {
@@ -26,6 +27,9 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation 'io.github.boogiemonster1o1:libcbe:1.1.2'
     include 'io.github.boogiemonster1o1:libcbe:1.1.2'
+    modImplementation "io.github.cottonmc:LibGui:3.0.0+1.16.3"
+    include "io.github.cottonmc:LibGui:3.0.0+1.16.3"
+    compileOnly "com.google.code.findbugs:jsr305:+"
 }
 
 processResources {

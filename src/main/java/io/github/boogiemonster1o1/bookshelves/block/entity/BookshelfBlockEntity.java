@@ -19,8 +19,6 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
-
 public class BookshelfBlockEntity extends LootableContainerBlockEntity {
     private DefaultedList<ItemStack> inventory;
     protected int viewerCount;
@@ -64,7 +62,7 @@ public class BookshelfBlockEntity extends LootableContainerBlockEntity {
 
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-        return BookshelfScreenHandler.create(syncId, playerInventory, this);
+        return new BookshelfScreenHandler(syncId, playerInventory, this);
     }
 
     @Override
