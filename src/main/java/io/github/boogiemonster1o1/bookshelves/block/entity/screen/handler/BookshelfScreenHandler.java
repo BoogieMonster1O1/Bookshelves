@@ -1,12 +1,15 @@
 package io.github.boogiemonster1o1.bookshelves.block.entity.screen.handler;
 
 import io.github.boogiemonster1o1.bookshelves.block.entity.ModBlockEntities;
+import io.github.boogiemonster1o1.bookshelves.init.Bookshelves;
 import io.github.cottonmc.cotton.gui.SyncedGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WItemSlot;
 
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.slot.Slot;
 
 public class BookshelfScreenHandler extends SyncedGuiDescription {
     private static final int SIZE = 18;
@@ -28,5 +31,10 @@ public class BookshelfScreenHandler extends SyncedGuiDescription {
         }
         root.add(this.createPlayerInventoryPanel(), 0, 6);
         root.validate(this);
+    }
+
+    @Override
+    public boolean canInsertIntoSlot(ItemStack stack, Slot slot) {
+        return stack.getItem().isIn(Bookshelves.TAG);
     }
 }

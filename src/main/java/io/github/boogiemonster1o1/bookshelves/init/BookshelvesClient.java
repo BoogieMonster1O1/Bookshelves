@@ -2,10 +2,7 @@ package io.github.boogiemonster1o1.bookshelves.init;
 
 import io.github.boogiemonster1o1.bookshelves.block.entity.ModBlockEntities;
 import io.github.boogiemonster1o1.bookshelves.block.entity.screen.handler.BookshelfScreenHandler;
-import io.github.cottonmc.cotton.gui.client.CottonInventoryScreen;
-
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.TranslatableText;
+import io.github.boogiemonster1o1.bookshelves.client.BookshelfHandledScreen;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -19,12 +16,7 @@ public class BookshelvesClient implements ClientModInitializer {
         //doesn't compile without explicit type arguments
         //bad bad bad bad bad
         //noinspection RedundantTypeArguments
-        ScreenRegistry.<BookshelfScreenHandler, BookshelvesClient.BookshelfScreen>register(ModBlockEntities.BOOKSHELF_SCREEN_HANDLER, (handler, playerInventory, text) -> new BookshelfScreen(handler, playerInventory.player));
+        ScreenRegistry.<BookshelfScreenHandler, BookshelfHandledScreen>register(ModBlockEntities.BOOKSHELF_SCREEN_HANDLER, (handler, playerInventory, text) -> new BookshelfHandledScreen(handler, playerInventory.player));
     }
 
-    public static class BookshelfScreen extends CottonInventoryScreen<BookshelfScreenHandler> {
-        public BookshelfScreen(BookshelfScreenHandler description, PlayerEntity player) {
-            super(description, player, new TranslatableText("bookshelves.screenHandler.name"));
-        }
-    }
 }

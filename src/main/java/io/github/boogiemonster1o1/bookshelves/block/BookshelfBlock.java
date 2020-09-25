@@ -3,12 +3,15 @@ package io.github.boogiemonster1o1.bookshelves.block;
 import java.util.Random;
 
 import io.github.boogiemonster1o1.bookshelves.block.entity.BookshelfBlockEntity;
+import io.github.boogiemonster1o1.bookshelves.client.BookshelfConfigurationToolScreen;
+import io.github.boogiemonster1o1.bookshelves.item.ModItems;
 import io.github.boogiemonster1o1.libcbe.api.ConditionalBlockWithEntity;
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
@@ -16,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.ActionResult;
@@ -28,22 +32,22 @@ import net.minecraft.world.World;
 
 public class BookshelfBlock extends ConditionalBlockWithEntity {
     public static final Property<Boolean> OPEN = Properties.OPEN;
+    public static final Property<Boolean> BLOCK_ENTITY = BooleanProperty.of("blockEntity");
 
     public BookshelfBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(OPEN, false));
+        this.setDefaultState(this.getDefaultState().with(OPEN, false).with(BLOCK_ENTITY, false));
     }
 
-    // TODO: make this configurable
     @Override
-    public boolean hasBlockEntity(BlockState blockState) {
-        return true;
+    public boolean hasBlockEntity(BlockState state) {
+        return state.get(BLOCK_ENTITY);
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
-        builder.add(OPEN);
+        builder.add(OPEN, BLOCK_ENTITY);
     }
 
     @Override
@@ -90,9 +94,13 @@ public class BookshelfBlock extends ConditionalBlockWithEntity {
         }
     }
 
+    @SuppressWarnings({"MethodCallSideOnly", "NewExpressionSideOnly"})
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient) {
+            if (player.getStackInHand(hand).getItem() == ModItems.BOOKSHELF_CONFIGURATION_TOOL){
+                MinecraftClient.getInstance().openScreen(new BookshelfConfigurationToolScreen(pos));
+            }
             return ActionResult.SUCCESS;
         } else {
             BlockEntity blockEntity = world.getBlockEntity(pos);

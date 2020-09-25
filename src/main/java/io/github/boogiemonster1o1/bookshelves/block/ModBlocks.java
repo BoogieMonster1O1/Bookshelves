@@ -21,16 +21,12 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
  * Overwrites the bookshelf block and item
  * @author BoogieMonster1O1
  */
-public class ModBlocksNItems {
+public class ModBlocks {
     public static final Block BOOKSHELF = new BookshelfBlock(FabricBlockSettings.copyOf(Blocks.BOOKSHELF));
     public static final RegistryKey<Block> BOOKSHELF_KEY = RegistryKey.of(Registry.BLOCK_KEY, new Identifier("minecraft", "bookshelf"));
-    public static final Item BOOKSHELF_ITEM = new BlockItem(BOOKSHELF, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final RegistryKey<Item> BOOKSHELF_ITEM_KEY = RegistryKey.of(Registry.ITEM_KEY, new Identifier("minecraft", "bookshelf"));
 
     public static void init() {
         Registry.BLOCK.set(Registry.BLOCK.getRawId(Blocks.BOOKSHELF), BOOKSHELF_KEY, BOOKSHELF, Lifecycle.stable());
         BlocksAccessor.setBookshelf(BOOKSHELF);
-        Registry.ITEM.set(Registry.ITEM.getRawId(Items.BOOKSHELF), BOOKSHELF_ITEM_KEY, BOOKSHELF_ITEM, Lifecycle.stable());
-        ItemsAccessor.setBookshelf(BOOKSHELF_ITEM);
     }
 }

@@ -1,3 +1,9 @@
 {
-  "bookshelves.screenHandler.name": "Bookshelf"
+  "bookshelves.screenHandler.name": "Bookshelf",
+  "item.bookshelves.bookshelf_configuration_tool": "Bookshelf Configuration Tool",
+  "item.bookshelves.bookshelf_configuration_tool.tooltip.title": "Supported Configurations",
+  "item.bookshelves.bookshelf_configuration_tool.tooltip.info": "Allows configuring a Bookshelf",
+  "item.bookshelves.bookshelf_configuration_tool.tooltip.pressShift": "Pres Shift for more information",
+  "item.bookshelves.bookshelf_configuration_tool.tooltip.blockEntity": "- Enabling/Disabling the Block Entity on a Bookshelf",
+  "bookshelves.config.unauthorized": "You do not have the permission to use this!"
 }
