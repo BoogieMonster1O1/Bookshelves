@@ -15,6 +15,7 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
@@ -62,7 +63,7 @@ public class BookshelfBlockEntity extends LootableContainerBlockEntity {
 
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-        return new BookshelfScreenHandler(syncId, playerInventory, this);
+        return new BookshelfScreenHandler(syncId, playerInventory, ScreenHandlerContext.create(this.world, this.pos));
     }
 
     @Override

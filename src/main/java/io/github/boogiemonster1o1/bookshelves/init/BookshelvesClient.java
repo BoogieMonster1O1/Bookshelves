@@ -16,7 +16,10 @@ import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 public class BookshelvesClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        ScreenRegistry.register(ModBlockEntities.BOOKSHELF_SCREEN_HANDLER, (handler, playerInventory, text) -> new BookshelfScreen(handler, playerInventory.player));
+        //doesn't compile without explicit type arguments
+        //bad bad bad bad bad
+        //noinspection RedundantTypeArguments
+        ScreenRegistry.<BookshelfScreenHandler, BookshelvesClient.BookshelfScreen>register(ModBlockEntities.BOOKSHELF_SCREEN_HANDLER, (handler, playerInventory, text) -> new BookshelfScreen(handler, playerInventory.player));
     }
 
     public static class BookshelfScreen extends CottonInventoryScreen<BookshelfScreenHandler> {
